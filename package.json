@@ -71,6 +71,7 @@
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.2",
+    "ts-mockito": "^2.6.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
@@ -88,8 +89,25 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.ts",
+      "!**/*.dto.ts",
+      "!**/*.entity.ts",
+      "!**/*.module.ts",
+      "!**/*.enum.ts",
+      "!**/*.interface.ts",
+      "!**/*.spec.ts",
+      "!**/main.ts",
+      "!**/tracing.ts",
+      "!**/env.validation.ts"
     ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 80,
+        "branches": 80,
+        "functions": 80,
+        "lines": 80
+      }
+    },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   }

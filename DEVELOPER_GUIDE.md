@@ -4,7 +4,7 @@ This document is a practical onboarding guide for engineers working on the Sneak
 
 ---
 
-## 1) Architecture Overview
+## 1 Architecture Overview
 
 ### Modular Monolith by Domain
 This codebase is a **Modular Monolith** organized by business domain under `src/modules/`:
@@ -27,7 +27,7 @@ Entities live in each domain (e.g. `src/modules/product/entites/*.entity.ts`), a
 
 ---
 
-## 2) System Behaviors (Statelessness)
+## 2 System Behaviors (Statelessness)
 
 ### The API is Stateless
 The API is intentionally **stateless**:
@@ -47,7 +47,7 @@ Swagger documentation is generated at runtime using NestJS Swagger tooling and t
 
 ---
 
-## 3) Local Environment Setup
+## 3 Local Environment Setup
 
 ### Prerequisites
 - Node.js + npm
@@ -69,14 +69,14 @@ npm install
 
 ```bash
 # Optional: align with docs URL below
-export PORT=3000
+export PORT=8080
 
 npm run start:dev
 ```
 
 ### Swagger UI
 Swagger UI is served at:
-- `http://localhost:3000/api-docs`
+- `http://localhost:8080/api-docs`
 
 If you do not set `PORT`, the service will use its configured default port; adjust the URL accordingly.
 
@@ -87,7 +87,7 @@ This repo is designed to work well on **Apple Silicon (ARM64)**:
 
 ---
 
-## 4) Clean Code Standards (Strict Rules)
+## 4 Clean Code Standards (Strict Rules)
 
 ### Controllers & DTOs
 - **DTOs must use `class-validator` / `class-transformer`** for validation and transformation.

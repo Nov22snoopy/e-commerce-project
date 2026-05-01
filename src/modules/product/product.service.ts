@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/sequelize';
+import { Transaction } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import { ProductsEntity } from './entites/products.entity';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -15,7 +16,9 @@ export class ProductService {
   ) {}
 
   async create(dto: CreateProductDto): Promise<ProductsEntity> {
-    return this.sequelize.transaction(async (transaction) => {
+    const transaction: Transaction = await this.sequelize.transaction();
+
+    try {
       const product = await this.productRepository.create(
         {
           brandId: dto.brandId,
@@ -56,8 +59,13 @@ export class ProductService {
         }
       }
 
-      return this.productRepository.findById(product.id, transaction);
-    });
+      const result = await this.productRepository.findById(product.id, transaction);
+      await transaction.commit();
+      return result;
+    } catch (err) {
+      await transaction.rollback();
+      throw err;
+    }
   }
 
   async findAll(filter: FilterProductDto): Promise<ProductsEntity[]> {
@@ -69,7 +77,9 @@ export class ProductService {
   }
 
   async update(id: string, dto: UpdateProductDto): Promise<ProductsEntity> {
-    return this.sequelize.transaction(async (transaction) => {
+    const transaction: Transaction = await this.sequelize.transaction();
+
+    try {
       const updateData: Partial<ProductsEntity> = {};
       if (dto.brandId !== undefined) updateData.brandId = dto.brandId;
       if (dto.name !== undefined) updateData.name = dto.name;
@@ -86,13 +96,24 @@ export class ProductService {
         }
       }
 
+      await transaction.commit();
       return product;
-    });
+    } catch (err) {
+      await transaction.rollback();
+      throw err;
+    }
   }
 
   async remove(id: string): Promise<void> {
-    return this.sequelize.transaction(async (transaction) => {
+    const transaction: Transaction = await this.sequelize.transaction();
+
+    try {
       await this.productRepository.delete(id, transaction);
-    });
+      await transaction.commit();
+      return;
+    } catch (err) {
+      await transaction.rollback();
+      throw err;
+    }
   }
 }
