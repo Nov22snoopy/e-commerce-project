@@ -1,11 +1,11 @@
 import { Sequelize } from 'sequelize-typescript';
 import { Transaction } from 'sequelize';
 import { anything, instance, mock, verify, when } from 'ts-mockito';
-import { ProductService } from './product.service';
-import { ProductRepository } from './repositories/product.repository';
-import { CreateProductDto } from './dto/create-product.dto';
-import { ProductsEntity } from './entites/products.entity';
-import { ProductVariantsEntity } from './entites/productVariants.entity';
+import { ProductService } from '../../src/modules/product/product.service';
+import { ProductRepository } from '../../src/modules/product/repositories/product.repository';
+import { CreateProductDto } from '../../src/modules/product/dto/create-product.dto';
+import { ProductsEntity } from '../../src/modules/product/entites/products.entity';
+import { ProductVariantsEntity } from '../../src/modules/product/entites/productVariants.entity';
 
 function buildProduct(id: string): ProductsEntity {
   return Object.assign(Object.create(ProductsEntity.prototype) as ProductsEntity, { id });

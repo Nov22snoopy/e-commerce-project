@@ -1,13 +1,13 @@
 import { instance, mock, verify, when } from 'ts-mockito';
-import { MasterDataService } from './master-data.service';
-import { BrandsEntity } from './entities/brands.entity';
-import { CategoriesEntity } from './entities/categories.entity';
-import { BrandsRepository } from './repositories/brands.repo';
-import { CategoriesRepository } from './repositories/category.repo';
-import { CategoryGroupsRepository } from './repositories/categoryGroup.repo';
-import { ColorsRepository } from './repositories/colors.repo';
-import { MasterDataReadRepository } from './repositories/master-data-read.repo';
-import { SizesRepository } from './repositories/sizes.repo';
+import { MasterDataService } from '../../src/modules/master-data/master-data.service';
+import { BrandsEntity } from '../../src/modules/master-data/entities/brands.entity';
+import { CategoriesEntity } from '../../src/modules/master-data/entities/categories.entity';
+import { BrandsRepository } from '../../src/modules/master-data/repositories/brands.repo';
+import { CategoriesRepository } from '../../src/modules/master-data/repositories/category.repo';
+import { CategoryGroupsRepository } from '../../src/modules/master-data/repositories/categoryGroup.repo';
+import { ColorsRepository } from '../../src/modules/master-data/repositories/colors.repo';
+import { MasterDataReadRepository } from '../../src/modules/master-data/repositories/master-data-read.repo';
+import { SizesRepository } from '../../src/modules/master-data/repositories/sizes.repo';
 
 function buildBrand(id: string): BrandsEntity {
   return Object.assign(Object.create(BrandsEntity.prototype) as BrandsEntity, { id });

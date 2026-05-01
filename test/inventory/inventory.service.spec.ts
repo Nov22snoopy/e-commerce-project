@@ -1,8 +1,8 @@
 import { NotFoundException } from '@nestjs/common';
 import { anything, instance, mock, verify, when } from 'ts-mockito';
-import { InventoryService } from './inventory.service';
-import { InventoryRepository } from './repositories/inventory.repository';
-import { SkusEntity } from './entities/skus.entity';
+import { InventoryService } from '../../src/modules/inventory/inventory.service';
+import { InventoryRepository } from '../../src/modules/inventory/repositories/inventory.repository';
+import { SkusEntity } from '../../src/modules/inventory/entities/skus.entity';
 
 function buildSku(overrides: Partial<Pick<SkusEntity, 'skuCode' | 'stock'>> = {}): SkusEntity {
   return Object.assign(

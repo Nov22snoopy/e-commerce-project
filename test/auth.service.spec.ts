@@ -2,9 +2,9 @@ import { ConflictException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { anything, capture, instance, mock, reset, verify, when } from 'ts-mockito';
-import { UsersEntity, UserRole } from '../user/entities/user.entity';
-import { UserService } from '../user/user.service';
-import { AuthService } from './auth.service';
+import { UsersEntity, UserRole } from '../src/modules/user/entities/user.entity';
+import { UserService } from '../src/modules/user/user.service';
+import { AuthService } from '../src/modules/auth/auth.service';
 
 // ---------------------------------------------------------------------------
 // Helpers
